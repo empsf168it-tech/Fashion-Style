@@ -124,12 +124,22 @@ export const ShopPage: React.FC<ShopPageProps> = ({ onAddToCart }) => {
           </div>
 
           {/* Product Grid */}
-          <div className="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-4 gap-6">
-            {filteredProducts.map((prod) => (
-              <div
-                key={prod.id}
-                className="group relative border border-gray-200 p-5 flex flex-col justify-between hover:border-black transition-all duration-300 bg-white"
-              >
+          <div className="grid grid-cols-1 md:grid-cols-2 xl:grid-cols-4 gap-6">
+            {filteredProducts.map((prod, index) => {
+              const isOddLast =
+                selectedCategory !== 'ALL' &&
+                filteredProducts.length % 2 !== 0 &&
+                index === filteredProducts.length - 1;
+
+              return (
+                <div
+                  key={prod.id}
+                  className={`group relative border border-gray-200 p-5 flex flex-col justify-between hover:border-black transition-all duration-300 bg-white ${
+                    isOddLast
+                      ? 'md:col-span-2 md:w-full md:max-w-[calc(50%-0.75rem)] md:mx-auto xl:col-span-1 xl:max-w-none xl:mx-0'
+                      : ''
+                  }`}
+                >
                 <CornerTL className="absolute top-0 left-0 text-gray-300 group-hover:text-black transition-colors" style={{ width: 'var(--corner)', height: 'var(--corner)' }} />
                 <CornerTR className="absolute top-0 right-0 text-gray-300 group-hover:text-black transition-colors" style={{ width: 'var(--corner)', height: 'var(--corner)' }} />
                 <CornerBL className="absolute bottom-0 left-0 text-gray-300 group-hover:text-black transition-colors" style={{ width: 'var(--corner)', height: 'var(--corner)' }} />
@@ -155,20 +165,21 @@ export const ShopPage: React.FC<ShopPageProps> = ({ onAddToCart }) => {
                   </p>
                 </div>
 
-                <div className="pt-3 border-t border-gray-100 flex items-center justify-between mt-4">
-                  <span className="font-jakarta font-extrabold text-base text-black">
+                <div className="pt-3 border-t border-gray-100 flex items-center justify-between gap-2 mt-4">
+                  <span className="font-jakarta font-extrabold text-base text-black shrink-0">
                     ${prod.price}
                   </span>
                   <button
                     onClick={() => onAddToCart(prod)}
-                    className="group/btn border border-black bg-black text-white hover:bg-white hover:text-black transition-colors px-3 py-1.5 font-jakarta font-semibold text-xs uppercase tracking-widest flex items-center gap-1.5 cursor-pointer"
+                    className="group/btn border border-black bg-black text-white hover:bg-white hover:text-black transition-colors px-3 py-1.5 font-jakarta font-semibold text-xs uppercase tracking-widest flex items-center gap-1.5 cursor-pointer shrink-0"
                   >
                     <span>ADD TO BAG</span>
                     <Plus className="w-3.5 h-3.5 group-hover/btn:rotate-90 transition-transform duration-300" />
                   </button>
                 </div>
               </div>
-            ))}
+            );
+          })}
           </div>
         </section>
 
@@ -186,63 +197,75 @@ export const ShopPage: React.FC<ShopPageProps> = ({ onAddToCart }) => {
             </span>
           </div>
 
-          <div className="grid grid-cols-1 lg:grid-cols-2 gap-8 items-center">
+          <div className="grid grid-cols-1 lg:grid-cols-2 gap-8 items-stretch">
             {/* Left Fabric Showcase */}
-            <div className="relative border border-gray-200 p-6 bg-white hover:border-black transition-colors duration-300">
+            <div className="group relative border border-gray-200 p-6 md:p-8 bg-white hover:border-black transition-colors duration-300 flex flex-col justify-between h-full">
               <CornerTL className="absolute top-0 left-0 text-black" style={{ width: 'var(--corner)', height: 'var(--corner)' }} />
               <CornerTR className="absolute top-0 right-0 text-black" style={{ width: 'var(--corner)', height: 'var(--corner)' }} />
               <CornerBL className="absolute bottom-0 left-0 text-black" style={{ width: 'var(--corner)', height: 'var(--corner)' }} />
               <CornerBR className="absolute bottom-0 right-0 text-black" style={{ width: 'var(--corner)', height: 'var(--corner)' }} />
 
-              <div className="aspect-[16/10] bg-gray-100 border border-gray-200 overflow-hidden mb-6">
-                <img
-                  src="https://images.unsplash.com/photo-1572804013309-59a88b7e92f1?auto=format&fit=crop&w=1000&q=85"
-                  alt="CYBER-TEX HYDROPHOBIC SHELL"
-                  className="w-full h-full object-cover object-center"
-                />
+              <div>
+                <div className="w-full aspect-[16/10] bg-gray-100 border border-gray-200 overflow-hidden mb-6 relative">
+                  <img
+                    src="https://images.unsplash.com/photo-1539109136881-3be0616acf4b?auto=format&fit=crop&w=1200&q=85"
+                    alt="CYBER-TEX HYDROPHOBIC SHELL"
+                    className="w-full h-full object-cover object-center group-hover:scale-105 transition-transform duration-500"
+                  />
+                  <span className="absolute top-3 left-3 bg-black text-white px-3 py-1 font-jakarta font-semibold uppercase text-[10px] tracking-widest">
+                    LAB TESTED
+                  </span>
+                </div>
+
+                <span className="font-jakarta font-semibold uppercase text-xs tracking-widest text-gray-400 block mb-1">
+                  MATERIAL TYPE 01
+                </span>
+                <h3 className="font-orbitron font-bold text-xl uppercase tracking-wide text-black mb-2">
+                  CYBER-TEX HYDROPHOBIC SHELL
+                </h3>
+                <p className="font-jakarta text-xs text-gray-600 leading-relaxed mb-6">
+                  Triple-layer synthetic poly-weave repelling extreme wind and water while allowing internal thermal regulation.
+                </p>
               </div>
 
-              <span className="font-jakarta font-semibold uppercase text-xs tracking-widest text-gray-400 block mb-1">
-                MATERIAL TYPE 01
-              </span>
-              <h3 className="font-orbitron font-bold text-xl uppercase tracking-wide text-black mb-2">
-                CYBER-TEX HYDROPHOBIC SHELL
-              </h3>
-              <p className="font-jakarta text-xs text-gray-600 leading-relaxed mb-4">
-                Triple-layer synthetic poly-weave repelling extreme wind and water while allowing internal thermal regulation.
-              </p>
-              <div className="flex items-center gap-4 text-xs font-jakarta font-bold text-black border-t border-gray-100 pt-3">
-                <span>RATING: 20,000mm</span>
+              <div className="flex items-center gap-4 text-xs font-jakarta font-bold text-black border-t border-gray-100 pt-4">
+                <span>RATING: 20,000MM</span>
                 <span>•</span>
                 <span>WEIGHT: 180 GSM</span>
               </div>
             </div>
 
             {/* Right Fabric Showcase */}
-            <div className="relative border border-gray-200 p-6 bg-white hover:border-black transition-colors duration-300">
+            <div className="group relative border border-gray-200 p-6 md:p-8 bg-white hover:border-black transition-colors duration-300 flex flex-col justify-between h-full">
               <CornerTL className="absolute top-0 left-0 text-black" style={{ width: 'var(--corner)', height: 'var(--corner)' }} />
               <CornerTR className="absolute top-0 right-0 text-black" style={{ width: 'var(--corner)', height: 'var(--corner)' }} />
               <CornerBL className="absolute bottom-0 left-0 text-black" style={{ width: 'var(--corner)', height: 'var(--corner)' }} />
               <CornerBR className="absolute bottom-0 right-0 text-black" style={{ width: 'var(--corner)', height: 'var(--corner)' }} />
 
-              <div className="aspect-[16/10] bg-gray-100 border border-gray-200 overflow-hidden mb-6">
-                <img
-                  src="https://images.unsplash.com/photo-1492562080023-ab3db95bfbce?auto=format&fit=crop&w=1000&q=85"
-                  alt="GEO-MESH THERMAL MATRIX"
-                  className="w-full h-full object-cover object-center"
-                />
+              <div>
+                <div className="w-full aspect-[16/10] bg-gray-100 border border-gray-200 overflow-hidden mb-6 relative">
+                  <img
+                    src="https://images.unsplash.com/photo-1490481651871-ab68de25d43d?auto=format&fit=crop&w=1200&q=85"
+                    alt="GEO-MESH THERMAL MATRIX"
+                    className="w-full h-full object-cover object-center group-hover:scale-105 transition-transform duration-500"
+                  />
+                  <span className="absolute top-3 left-3 bg-black text-white px-3 py-1 font-jakarta font-semibold uppercase text-[10px] tracking-widest">
+                    PATENT PENDING
+                  </span>
+                </div>
+
+                <span className="font-jakarta font-semibold uppercase text-xs tracking-widest text-gray-400 block mb-1">
+                  MATERIAL TYPE 02
+                </span>
+                <h3 className="font-orbitron font-bold text-xl uppercase tracking-wide text-black mb-2">
+                  GEO-MESH THERMAL MATRIX
+                </h3>
+                <p className="font-jakarta text-xs text-gray-600 leading-relaxed mb-6">
+                  4-Way stretch ergonomic mesh with laser-perforated ventilation ports for uninhibited mobility.
+                </p>
               </div>
 
-              <span className="font-jakarta font-semibold uppercase text-xs tracking-widest text-gray-400 block mb-1">
-                MATERIAL TYPE 02
-              </span>
-              <h3 className="font-orbitron font-bold text-xl uppercase tracking-wide text-black mb-2">
-                GEO-MESH THERMAL MATRIX
-              </h3>
-              <p className="font-jakarta text-xs text-gray-600 leading-relaxed mb-4">
-                4-way stretch ergonomic mesh with laser-perforated ventilation ports for uninhibited mobility.
-              </p>
-              <div className="flex items-center gap-4 text-xs font-jakarta font-bold text-black border-t border-gray-100 pt-3">
+              <div className="flex items-center gap-4 text-xs font-jakarta font-bold text-black border-t border-gray-100 pt-4">
                 <span>ELASTANE: 18%</span>
                 <span>•</span>
                 <span>BREATHABILITY: HIGH</span>
@@ -265,50 +288,62 @@ export const ShopPage: React.FC<ShopPageProps> = ({ onAddToCart }) => {
             </span>
           </div>
 
-          <div className="grid grid-cols-1 md:grid-cols-3 gap-6">
-            <div className="relative border border-gray-200 p-6 bg-white hover:border-black transition-colors duration-300">
+          <div className="grid grid-cols-1 md:grid-cols-3 gap-6 items-stretch">
+            <div className="group relative border border-gray-200 p-6 md:p-8 bg-white hover:border-black transition-colors duration-300 flex flex-col justify-between h-full">
               <CornerTL className="absolute top-0 left-0 text-black" style={{ width: 'var(--corner)', height: 'var(--corner)' }} />
               <CornerTR className="absolute top-0 right-0 text-black" style={{ width: 'var(--corner)', height: 'var(--corner)' }} />
               <CornerBL className="absolute bottom-0 left-0 text-black" style={{ width: 'var(--corner)', height: 'var(--corner)' }} />
               <CornerBR className="absolute bottom-0 right-0 text-black" style={{ width: 'var(--corner)', height: 'var(--corner)' }} />
 
-              <RefreshCw className="w-8 h-8 text-black mb-4" />
-              <h3 className="font-orbitron font-bold text-lg uppercase tracking-wide text-black mb-2">
-                CIRCULAR RECYCLING
-              </h3>
-              <p className="font-jakarta text-xs text-gray-600 leading-relaxed">
-                Return worn garments anytime. We extrude 100% of synthetic fibers back into raw polymer threads for future series.
-              </p>
+              <div className="flex flex-col items-center text-center">
+                <div className="w-14 h-14 rounded-full bg-gray-50 border border-gray-200 flex items-center justify-center mb-4 group-hover:border-black group-hover:bg-black group-hover:text-white transition-all duration-300">
+                  <RefreshCw className="w-6 h-6 transition-colors" />
+                </div>
+                <h3 className="font-orbitron font-bold text-lg uppercase tracking-wide text-black mb-2">
+                  CIRCULAR RECYCLING
+                </h3>
+                <p className="font-jakarta text-xs text-gray-600 leading-relaxed">
+                  Return worn garments anytime. We extrude 100% of synthetic fibers back into raw polymer threads for future series.
+                </p>
+              </div>
             </div>
 
-            <div className="relative border border-gray-200 p-6 bg-white hover:border-black transition-colors duration-300">
+            <div className="group relative border border-gray-200 p-6 md:p-8 bg-white hover:border-black transition-colors duration-300 flex flex-col justify-between h-full">
               <CornerTL className="absolute top-0 left-0 text-black" style={{ width: 'var(--corner)', height: 'var(--corner)' }} />
               <CornerTR className="absolute top-0 right-0 text-black" style={{ width: 'var(--corner)', height: 'var(--corner)' }} />
               <CornerBL className="absolute bottom-0 left-0 text-black" style={{ width: 'var(--corner)', height: 'var(--corner)' }} />
               <CornerBR className="absolute bottom-0 right-0 text-black" style={{ width: 'var(--corner)', height: 'var(--corner)' }} />
 
-              <ShieldCheck className="w-8 h-8 text-black mb-4" />
-              <h3 className="font-orbitron font-bold text-lg uppercase tracking-wide text-black mb-2">
-                FREE LIFETIME REPAIR
-              </h3>
-              <p className="font-jakarta text-xs text-gray-600 leading-relaxed">
-                Every seam, magnetic zip, and laser-bonded joint is covered under our lifetime repair guarantee.
-              </p>
+              <div className="flex flex-col items-center text-center">
+                <div className="w-14 h-14 rounded-full bg-gray-50 border border-gray-200 flex items-center justify-center mb-4 group-hover:border-black group-hover:bg-black group-hover:text-white transition-all duration-300">
+                  <ShieldCheck className="w-6 h-6 transition-colors" />
+                </div>
+                <h3 className="font-orbitron font-bold text-lg uppercase tracking-wide text-black mb-2">
+                  FREE LIFETIME REPAIR
+                </h3>
+                <p className="font-jakarta text-xs text-gray-600 leading-relaxed">
+                  Every seam, magnetic zip, and laser-bonded joint is covered under our lifetime repair guarantee.
+                </p>
+              </div>
             </div>
 
-            <div className="relative border border-gray-200 p-6 bg-white hover:border-black transition-colors duration-300">
+            <div className="group relative border border-gray-200 p-6 md:p-8 bg-white hover:border-black transition-colors duration-300 flex flex-col justify-between h-full">
               <CornerTL className="absolute top-0 left-0 text-black" style={{ width: 'var(--corner)', height: 'var(--corner)' }} />
               <CornerTR className="absolute top-0 right-0 text-black" style={{ width: 'var(--corner)', height: 'var(--corner)' }} />
               <CornerBL className="absolute bottom-0 left-0 text-black" style={{ width: 'var(--corner)', height: 'var(--corner)' }} />
               <CornerBR className="absolute bottom-0 right-0 text-black" style={{ width: 'var(--corner)', height: 'var(--corner)' }} />
 
-              <Truck className="w-8 h-8 text-black mb-4" />
-              <h3 className="font-orbitron font-bold text-lg uppercase tracking-wide text-black mb-2">
-                GLOBAL STEALTH EXPRESS
-              </h3>
-              <p className="font-jakarta text-xs text-gray-600 leading-relaxed">
-                Carbon-neutral global express shipping with custom weatherproof packaging and tracking.
-              </p>
+              <div className="flex flex-col items-center text-center">
+                <div className="w-14 h-14 rounded-full bg-gray-50 border border-gray-200 flex items-center justify-center mb-4 group-hover:border-black group-hover:bg-black group-hover:text-white transition-all duration-300">
+                  <Truck className="w-6 h-6 transition-colors" />
+                </div>
+                <h3 className="font-orbitron font-bold text-lg uppercase tracking-wide text-black mb-2">
+                  GLOBAL STEALTH EXPRESS
+                </h3>
+                <p className="font-jakarta text-xs text-gray-600 leading-relaxed">
+                  Carbon-neutral global express shipping with custom weatherproof packaging and tracking.
+                </p>
+              </div>
             </div>
           </div>
         </section>

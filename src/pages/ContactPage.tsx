@@ -1,6 +1,6 @@
 import React, { useState } from 'react';
 import { ContactHero } from '../components/ContactHero';
-import { CornerTL, CornerTR, CornerBL, CornerBR, WireframeGlobe } from '../components/SVGs';
+import { CornerTL, CornerTR, CornerBL, CornerBR } from '../components/SVGs';
 import {
   Mail,
   Phone,
@@ -433,16 +433,19 @@ export const ContactPage: React.FC = () => {
             </span>
           </div>
 
-          <div className="grid grid-cols-1 sm:grid-cols-2 lg:grid-cols-5 gap-6">
+          <div className="grid grid-cols-1 sm:grid-cols-2 lg:grid-cols-5 gap-6 items-stretch">
             {SOCIAL_LINKS.map((soc, idx) => {
               const IconComp = soc.icon;
+              const isLastOdd = idx === SOCIAL_LINKS.length - 1;
               return (
                 <a
                   key={idx}
                   href={soc.url}
                   target="_blank"
                   rel="noreferrer"
-                  className="group relative border border-gray-200 p-6 bg-white hover:border-black transition-colors duration-300 flex flex-col justify-between items-start"
+                  className={`group relative border border-gray-200 p-6 bg-white hover:border-black transition-colors duration-300 flex flex-col justify-between items-start h-full min-h-[210px] w-full ${
+                    isLastOdd ? 'sm:col-span-2 lg:col-span-1' : ''
+                  }`}
                 >
                   <CornerTL className="absolute top-0 left-0 text-gray-300 group-hover:text-black transition-colors" style={{ width: 'var(--corner)', height: 'var(--corner)' }} />
                   <CornerTR className="absolute top-0 right-0 text-gray-300 group-hover:text-black transition-colors" style={{ width: 'var(--corner)', height: 'var(--corner)' }} />
@@ -453,7 +456,7 @@ export const ContactPage: React.FC = () => {
                     <IconComp className="w-5 h-5" />
                   </div>
 
-                  <div>
+                  <div className="w-full">
                     <h4 className="font-orbitron font-bold text-sm uppercase tracking-wide text-black mb-1">
                       {soc.name}
                     </h4>

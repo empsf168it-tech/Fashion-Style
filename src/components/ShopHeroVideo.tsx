@@ -1,5 +1,6 @@
 import React, { useEffect, useRef } from 'react';
 import { CornerTL, CornerTR, CornerBL, CornerBR, CheckerboardGrid } from './SVGs';
+import { ArrowDown } from 'lucide-react';
 
 export const ShopHeroVideo: React.FC = () => {
   const canvasRef = useRef<HTMLCanvasElement | null>(null);
@@ -110,8 +111,8 @@ export const ShopHeroVideo: React.FC = () => {
       {/* Atmospheric Dreamy Clouds Canvas Overlay */}
       <canvas ref={canvasRef} className="absolute inset-0 w-full h-full pointer-events-none z-10" />
 
-      {/* Cinematic Tint Overlay */}
-      <div className="absolute inset-0 bg-gradient-to-t from-white via-black/40 to-black/60 z-10" />
+      {/* Cinematic High-Contrast Tint Overlay */}
+      <div className="absolute inset-0 bg-gradient-to-t from-black/85 via-black/55 to-black/70 z-10" />
 
       {/* Corner Brackets Frame */}
       <CornerTL className="absolute top-6 left-6 text-white z-20" style={{ width: 'var(--corner)', height: 'var(--corner)' }} />
@@ -121,7 +122,7 @@ export const ShopHeroVideo: React.FC = () => {
 
       {/* Center Hero Overlay Content */}
       <div className="relative z-20 flex flex-col items-center justify-center text-center px-6 max-w-4xl">
-        <div className="flex items-center gap-3 mb-4 bg-white/10 backdrop-blur-md px-4 py-1.5 rounded-full border border-white/20">
+        <div className="flex items-center gap-3 mb-4 bg-black/60 backdrop-blur-md px-4 py-1.5 rounded-full border border-white/30 shadow-lg">
           <span className="w-2 h-2 rounded-full bg-emerald-400 animate-pulse" />
           <span className="font-jakarta font-semibold text-[11px] uppercase tracking-[0.2em] text-white">
             CINEMATIC CAMPAIGN FILM // 4K EDITION
@@ -129,22 +130,38 @@ export const ShopHeroVideo: React.FC = () => {
         </div>
 
         <h1
-          className="font-orbitron font-extrabold uppercase tracking-[0.08em] text-white mb-4 drop-shadow-2xl leading-none"
+          className="font-orbitron font-extrabold uppercase tracking-[0.08em] text-white mb-4 drop-shadow-[0_4px_14px_rgba(0,0,0,0.9)] leading-none"
           style={{ fontSize: 'clamp(2.5rem, 5.5vw, 5.5rem)' }}
         >
           GARMENT CATALOG
         </h1>
 
-        <div className="flex items-center gap-3 mb-6">
-          <span className="font-jakarta font-bold text-xs uppercase tracking-[0.25em] text-gray-200">
+        <div className="flex items-center gap-3 mb-6 bg-black/60 backdrop-blur-md px-4 py-2 border border-white/20 shadow-md">
+          <span className="font-jakarta font-bold text-xs uppercase tracking-[0.25em] text-white">
             DREAMY LUXURY SILHOUETTE ARCHITECTURE
           </span>
           <CheckerboardGrid />
         </div>
 
-        <p className="font-jakarta text-xs text-gray-300 uppercase tracking-[0.18em] max-w-xl leading-relaxed drop-shadow-md">
+        <p className="font-jakarta font-semibold text-xs text-white uppercase tracking-[0.18em] max-w-xl leading-relaxed drop-shadow-[0_2px_8px_rgba(0,0,0,0.9)] bg-black/60 backdrop-blur-md p-4 border-b-2 border-white">
           Explore technical outerwear, geo-mesh hoodies, and modular garments engineered for high performance in hostile urban environments.
         </p>
+
+        {/* Top to Bottom Section Scroll Indicator Icon */}
+        <button
+          onClick={() => {
+            window.scrollBy({ top: window.innerHeight * 0.75, behavior: 'smooth' });
+          }}
+          className="mt-8 flex flex-col items-center gap-1.5 text-white hover:opacity-80 transition-all cursor-pointer group select-none bg-black/50 backdrop-blur-md px-4 py-2 rounded-full border border-white/20 hover:border-white"
+          aria-label="Scroll to Products"
+        >
+          <span className="font-jakarta text-[9px] uppercase tracking-[0.25em] font-bold text-white">
+            SCROLL DOWN
+          </span>
+          <div className="w-6 h-6 rounded-full border border-white/60 group-hover:border-white flex items-center justify-center transition-colors">
+            <ArrowDown className="w-3.5 h-3.5 group-hover:translate-y-0.5 transition-transform text-white" />
+          </div>
+        </button>
       </div>
     </div>
   );

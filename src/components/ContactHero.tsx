@@ -1,9 +1,10 @@
 import React from 'react';
 import { CornerTL, CornerTR, CornerBL, CornerBR, CheckerboardGrid, WireframeGlobe } from './SVGs';
+import { ArrowDown } from 'lucide-react';
 
 export const ContactHero: React.FC = () => {
   return (
-    <div className="relative w-full min-h-[70vh] flex flex-col justify-between items-center z-10 py-12 bg-black text-white overflow-hidden mb-16 border-b border-gray-800">
+    <div className="relative w-full min-h-[70vh] md:min-h-[75vh] flex flex-col justify-center items-center z-10 py-10 sm:py-14 bg-black text-white overflow-hidden mb-16 border-b border-gray-800">
       {/* High Visibility Background Image Overlay */}
       <div className="absolute inset-0 z-0">
         <img
@@ -23,19 +24,19 @@ export const ContactHero: React.FC = () => {
 
       {/* Centered Hero Content Block */}
       <div
-        className="relative z-10 flex flex-col justify-center items-center text-center my-auto py-6 max-w-4xl mx-auto"
+        className="relative z-10 flex flex-col justify-center items-center text-center w-full max-w-4xl mx-auto gap-4 sm:gap-6"
         style={{ paddingInline: 'var(--pad-x)' }}
       >
-        <div className="mb-4 text-white drop-shadow-md mx-auto">
+        <div className="text-white drop-shadow-md mx-auto">
           <CornerTL style={{ width: 'var(--corner)', height: 'var(--corner)' }} />
         </div>
 
-        <span className="font-jakarta font-bold uppercase text-xs tracking-[0.25em] text-white/90 block mb-3 drop-shadow-md bg-black/50 px-4 py-1.5 border border-white/20 backdrop-blur-xs mx-auto">
+        <span className="font-jakarta font-bold uppercase text-[10px] sm:text-xs tracking-[0.25em] text-white/90 block drop-shadow-md bg-black/60 px-4 py-1.5 border border-white/20 backdrop-blur-xs mx-auto">
           GLOBAL NETWORK // CLIENT RELATIONS & DISPATCH
         </span>
 
         <h1
-          className="font-orbitron font-extrabold uppercase tracking-[0.08em] leading-[1.02] text-white mb-6 select-none drop-shadow-[0_4px_12px_rgba(0,0,0,0.8)] text-center flex flex-col items-center"
+          className="font-orbitron font-extrabold uppercase tracking-[0.08em] leading-[1.02] text-white select-none drop-shadow-[0_4px_12px_rgba(0,0,0,0.8)] text-center flex flex-col items-center"
           style={{ fontSize: 'var(--headline)' }}
         >
           <div>GET IN</div>
@@ -46,25 +47,43 @@ export const ContactHero: React.FC = () => {
           </div>
         </h1>
 
-        <div className="mt-2 mb-6 text-white drop-shadow-md mx-auto">
+        <div className="text-white drop-shadow-md mx-auto">
           <CornerBL style={{ width: 'var(--corner)', height: 'var(--corner)' }} />
         </div>
 
-        <p className="font-jakarta font-semibold text-xs text-white uppercase tracking-[0.2em] max-w-xl leading-relaxed drop-shadow-md bg-black/50 p-4 border-b-2 border-white backdrop-blur-xs text-center mx-auto">
-          DIRECT LINE TO OUR TOKYO & PARIS FLAGSHIP DESIGN STUDIOS AND VIP STEALTH CONCIERGE.
-        </p>
-      </div>
+        {/* Uniform Hero Cards Stack (Matching Width in All Views) */}
+        <div className="w-full max-w-xl flex flex-col gap-3.5 sm:gap-4 mt-1">
+          {/* Summary Card */}
+          <div className="w-full bg-black/60 border border-white/25 p-3.5 sm:p-4 backdrop-blur-md text-center rounded-sm">
+            <p className="font-jakarta font-semibold text-[11px] sm:text-xs text-white uppercase tracking-[0.16em] leading-relaxed">
+              DIRECT LINE TO OUR TOKYO & PARIS FLAGSHIP DESIGN STUDIOS AND VIP STEALTH CONCIERGE.
+            </p>
+          </div>
 
-      {/* Centered Lower Feature Badge */}
-      <div className="relative z-10 mx-auto mt-4" style={{ paddingInline: 'var(--pad-x)' }}>
-        <div
-          className="relative flex flex-row items-center justify-center gap-4 text-white border border-white/30 bg-black/70 backdrop-blur-md rounded-lg px-6 py-3 shadow-2xl"
-        >
-          <WireframeGlobe />
-          <div className="font-jakarta font-bold uppercase tracking-[0.2em] text-white text-xs leading-snug text-center">
-            CLIENT CONCIERGE OPERATIONAL 24/7 WORLDWIDE.
+          {/* Feature Badge Card */}
+          <div className="w-full flex items-center justify-center gap-3 sm:gap-4 border border-white/25 bg-black/60 backdrop-blur-md rounded-sm px-4 py-2.5 sm:py-3 shadow-lg">
+            <WireframeGlobe />
+            <span className="font-jakarta font-bold uppercase tracking-[0.16em] text-white text-[11px] sm:text-xs leading-snug text-center">
+              CLIENT CONCIERGE OPERATIONAL 24/7 WORLDWIDE.
+            </span>
           </div>
         </div>
+
+        {/* Top to Bottom Section Scroll Indicator Icon */}
+        <button
+          onClick={() => {
+            window.scrollBy({ top: window.innerHeight * 0.75, behavior: 'smooth' });
+          }}
+          className="relative z-10 mt-2 sm:mt-4 flex flex-col items-center gap-1.5 text-white hover:opacity-75 transition-all cursor-pointer group select-none"
+          aria-label="Scroll Down"
+        >
+          <span className="font-jakarta text-[9px] uppercase tracking-[0.25em] font-semibold text-gray-300 group-hover:text-white">
+            SCROLL DOWN
+          </span>
+          <div className="w-7 h-7 rounded-full border border-white/40 group-hover:border-white flex items-center justify-center transition-colors">
+            <ArrowDown className="w-3.5 h-3.5 group-hover:translate-y-0.5 transition-transform" />
+          </div>
+        </button>
       </div>
     </div>
   );

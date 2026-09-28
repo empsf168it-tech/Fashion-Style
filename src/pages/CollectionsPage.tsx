@@ -86,7 +86,7 @@ export const CollectionsPage: React.FC = () => {
           {COLLECTIONS_FULL.map((item, idx) => (
             <div
               key={item.id}
-              className="relative border border-gray-200 p-8 flex flex-col lg:flex-row gap-10 items-stretch bg-white hover:border-black transition-colors duration-300"
+              className="relative border border-gray-200 p-6 md:p-8 flex flex-col xl:flex-row gap-8 xl:gap-12 items-stretch bg-white hover:border-black transition-colors duration-300"
             >
               <CornerTL className="absolute top-0 left-0 text-black" style={{ width: 'var(--corner)', height: 'var(--corner)' }} />
               <CornerTR className="absolute top-0 right-0 text-black" style={{ width: 'var(--corner)', height: 'var(--corner)' }} />
@@ -94,24 +94,24 @@ export const CollectionsPage: React.FC = () => {
               <CornerBR className="absolute bottom-0 right-0 text-black" style={{ width: 'var(--corner)', height: 'var(--corner)' }} />
 
               {/* Campaign Visual Frame */}
-              <div className={`w-full lg:w-1/2 min-h-[380px] bg-gray-100 border border-gray-200 overflow-hidden relative ${idx % 2 === 1 ? 'lg:order-2' : ''}`}>
+              <div className={`w-full xl:w-1/2 aspect-[4/3] sm:aspect-[16/10] xl:aspect-[4/3] min-h-0 bg-gray-100 border border-gray-200 overflow-hidden relative shrink-0 ${idx % 2 === 1 ? 'xl:order-2' : ''}`}>
                 <img
                   src={item.img}
                   alt={item.title}
-                  className="w-full h-full object-cover object-center hover:scale-105 transition-transform duration-700"
+                  className="w-full h-full object-cover object-center hover:scale-105 transition-transform duration-700 block"
                 />
-                <span className="absolute top-4 left-4 bg-black text-white font-orbitron font-bold text-xs px-3 py-1.5 tracking-widest uppercase">
+                <span className="absolute top-4 left-4 bg-black text-white font-orbitron font-bold text-xs px-3 py-1.5 tracking-widest uppercase shadow-sm">
                   {item.series}
                 </span>
               </div>
 
               {/* Content Details */}
-              <div className={`w-full lg:w-1/2 flex flex-col justify-between items-start space-y-6 ${idx % 2 === 1 ? 'lg:order-1' : ''}`}>
-                <div>
+              <div className={`w-full xl:w-1/2 flex flex-col justify-between items-start gap-6 min-h-0 ${idx % 2 === 1 ? 'xl:order-1' : ''}`}>
+                <div className="w-full">
                   <span className="font-jakarta font-semibold uppercase text-xs tracking-[0.2em] text-gray-400 block mb-2">
                     {item.tagline}
                   </span>
-                  <h2 className="font-orbitron font-bold text-3xl md:text-4xl uppercase tracking-wider text-black mb-4">
+                  <h2 className="font-orbitron font-bold text-2xl sm:text-3xl md:text-4xl uppercase tracking-wider text-black mb-3">
                     {item.title}
                   </h2>
                   <p className="font-jakarta text-sm text-gray-600 leading-relaxed mb-6">
@@ -126,7 +126,7 @@ export const CollectionsPage: React.FC = () => {
                     <div className="grid grid-cols-1 sm:grid-cols-2 gap-2">
                       {item.specs.map((spec, sIdx) => (
                         <div key={sIdx} className="flex items-center gap-2 text-xs font-jakarta text-gray-700">
-                          <span className="w-1.5 h-1.5 bg-black rounded-full"></span>
+                          <span className="w-1.5 h-1.5 bg-black rounded-full flex-shrink-0"></span>
                           <span>{spec}</span>
                         </div>
                       ))}
@@ -157,55 +157,69 @@ export const CollectionsPage: React.FC = () => {
             </span>
           </div>
 
-          <div className="grid grid-cols-1 lg:grid-cols-2 gap-8 items-center">
-            <div className="relative border border-gray-200 p-8 bg-white hover:border-black transition-colors duration-300">
+          <div className="grid grid-cols-1 md:grid-cols-2 gap-8 items-stretch">
+            <div className="group relative border border-gray-200 p-6 md:p-8 bg-white hover:border-black transition-colors duration-300 flex flex-col justify-between h-full">
               <CornerTL className="absolute top-0 left-0 text-black" style={{ width: 'var(--corner)', height: 'var(--corner)' }} />
               <CornerTR className="absolute top-0 right-0 text-black" style={{ width: 'var(--corner)', height: 'var(--corner)' }} />
               <CornerBL className="absolute bottom-0 left-0 text-black" style={{ width: 'var(--corner)', height: 'var(--corner)' }} />
               <CornerBR className="absolute bottom-0 right-0 text-black" style={{ width: 'var(--corner)', height: 'var(--corner)' }} />
 
-              <div className="aspect-[16/10] bg-gray-100 border border-gray-200 overflow-hidden mb-6">
-                <img
-                  src="https://images.unsplash.com/photo-1483985988355-763728e1935b?auto=format&fit=crop&w=1000&q=85"
-                  alt="3D SILHOUETTE SCULPTING"
-                  className="w-full h-full object-cover object-center"
-                />
+              <div className="flex-1 flex flex-col">
+                <div className="aspect-[4/3] bg-gray-100 border border-gray-200 overflow-hidden mb-6 shrink-0">
+                  <img
+                    src="https://images.unsplash.com/photo-1483985988355-763728e1935b?auto=format&fit=crop&w=1000&q=85"
+                    alt="3D SILHOUETTE SCULPTING"
+                    className="w-full h-full object-cover object-top group-hover:scale-105 transition-transform duration-500"
+                  />
+                </div>
+
+                <span className="font-jakarta font-semibold uppercase text-xs tracking-widest text-gray-400 block mb-1">
+                  PROCESS 01
+                </span>
+                <h3 className="font-orbitron font-bold text-xl md:text-2xl uppercase tracking-wide text-black mb-3 min-h-[3.5rem] flex items-center">
+                  3D SILHOUETTE SCULPTING
+                </h3>
+                <p className="font-jakarta text-xs text-gray-600 leading-relaxed mb-6 flex-1">
+                  Virtual CAD draping simulates fabric movement under gravity, wind pressure, and rapid human movement prior to physical cutting.
+                </p>
               </div>
 
-              <span className="font-jakarta font-semibold uppercase text-xs tracking-widest text-gray-400 block mb-1">
-                PROCESS 01
-              </span>
-              <h3 className="font-orbitron font-bold text-2xl uppercase tracking-wide text-black mb-3">
-                3D SILHOUETTE SCULPTING
-              </h3>
-              <p className="font-jakarta text-xs text-gray-600 leading-relaxed mb-4">
-                Virtual CAD draping simulates fabric movement under gravity, wind pressure, and rapid human movement prior to physical cutting.
-              </p>
+              <div className="pt-4 border-t border-gray-100 flex items-center justify-between text-xs font-jakarta font-bold uppercase tracking-widest text-black mt-auto">
+                <span>SIMULATION RESOLUTION</span>
+                <span>4K TESSELLATION</span>
+              </div>
             </div>
 
-            <div className="relative border border-gray-200 p-8 bg-white hover:border-black transition-colors duration-300">
+            <div className="group relative border border-gray-200 p-6 md:p-8 bg-white hover:border-black transition-colors duration-300 flex flex-col justify-between h-full">
               <CornerTL className="absolute top-0 left-0 text-black" style={{ width: 'var(--corner)', height: 'var(--corner)' }} />
               <CornerTR className="absolute top-0 right-0 text-black" style={{ width: 'var(--corner)', height: 'var(--corner)' }} />
               <CornerBL className="absolute bottom-0 left-0 text-black" style={{ width: 'var(--corner)', height: 'var(--corner)' }} />
               <CornerBR className="absolute bottom-0 right-0 text-black" style={{ width: 'var(--corner)', height: 'var(--corner)' }} />
 
-              <div className="aspect-[16/10] bg-gray-100 border border-gray-200 overflow-hidden mb-6">
-                <img
-                  src="https://images.unsplash.com/photo-1520975954732-35dd22299614?auto=format&fit=crop&w=1000&q=85"
-                  alt="LASER SEAM BONDING"
-                  className="w-full h-full object-cover object-center"
-                />
+              <div className="flex-1 flex flex-col">
+                <div className="aspect-[4/3] bg-gray-100 border border-gray-200 overflow-hidden mb-6 shrink-0">
+                  <img
+                    src="https://images.unsplash.com/photo-1520975954732-35dd22299614?auto=format&fit=crop&w=1000&q=85"
+                    alt="LASER SEAM BONDING"
+                    className="w-full h-full object-cover object-top group-hover:scale-105 transition-transform duration-500"
+                  />
+                </div>
+
+                <span className="font-jakarta font-semibold uppercase text-xs tracking-widest text-gray-400 block mb-1">
+                  PROCESS 02
+                </span>
+                <h3 className="font-orbitron font-bold text-xl md:text-2xl uppercase tracking-wide text-black mb-3 min-h-[3.5rem] flex items-center">
+                  LASER SEAM BONDING
+                </h3>
+                <p className="font-jakarta text-xs text-gray-600 leading-relaxed mb-6 flex-1">
+                  Replacing traditional thread stitching with ultrasonic laser welds for 100% waterproof seal integrity and razor-thin profile seams.
+                </p>
               </div>
 
-              <span className="font-jakarta font-semibold uppercase text-xs tracking-widest text-gray-400 block mb-1">
-                PROCESS 02
-              </span>
-              <h3 className="font-orbitron font-bold text-2xl uppercase tracking-wide text-black mb-3">
-                LASER SEAM BONDING
-              </h3>
-              <p className="font-jakarta text-xs text-gray-600 leading-relaxed mb-4">
-                Replacing traditional thread stitching with ultrasonic laser welds for 100% waterproof seal integrity and razor-thin profile seams.
-              </p>
+              <div className="pt-4 border-t border-gray-100 flex items-center justify-between text-xs font-jakarta font-bold uppercase tracking-widest text-black mt-auto">
+                <span>SEAM WATERPROOFING</span>
+                <span>100% ULTRASONIC</span>
+              </div>
             </div>
           </div>
         </section>
@@ -224,31 +238,33 @@ export const CollectionsPage: React.FC = () => {
             </span>
           </div>
 
-          <div className="grid grid-cols-1 sm:grid-cols-2 lg:grid-cols-4 gap-6">
+          <div className="grid grid-cols-1 sm:grid-cols-2 xl:grid-cols-4 gap-6 items-stretch">
             {LOOKBOOK_STILLS.map((still) => (
               <div
                 key={still.id}
-                className="group relative border border-gray-200 p-4 bg-white hover:border-black transition-colors duration-300"
+                className="group relative border border-gray-200 p-4 bg-white hover:border-black transition-colors duration-300 flex flex-col justify-between h-full"
               >
                 <CornerTL className="absolute top-0 left-0 text-gray-300 group-hover:text-black transition-colors" style={{ width: 'var(--corner)', height: 'var(--corner)' }} />
                 <CornerTR className="absolute top-0 right-0 text-gray-300 group-hover:text-black transition-colors" style={{ width: 'var(--corner)', height: 'var(--corner)' }} />
                 <CornerBL className="absolute bottom-0 left-0 text-gray-300 group-hover:text-black transition-colors" style={{ width: 'var(--corner)', height: 'var(--corner)' }} />
                 <CornerBR className="absolute bottom-0 right-0 text-gray-300 group-hover:text-black transition-colors" style={{ width: 'var(--corner)', height: 'var(--corner)' }} />
 
-                <div className="aspect-[4/5] bg-gray-100 overflow-hidden mb-3 relative">
-                  <img
-                    src={still.img}
-                    alt={still.title}
-                    className="w-full h-full object-cover object-center group-hover:scale-105 transition-transform duration-700"
-                  />
-                  <span className="absolute top-3 left-3 bg-black text-white text-[9px] font-jakarta font-bold px-2 py-0.5 uppercase tracking-widest">
-                    {still.series}
-                  </span>
-                </div>
+                <div>
+                  <div className="aspect-[4/5] bg-gray-100 overflow-hidden mb-3 relative">
+                    <img
+                      src={still.img}
+                      alt={still.title}
+                      className="w-full h-full object-cover object-center group-hover:scale-105 transition-transform duration-700"
+                    />
+                    <span className="absolute top-3 left-3 bg-black text-white text-[9px] font-jakarta font-bold px-2 py-0.5 uppercase tracking-widest">
+                      {still.series}
+                    </span>
+                  </div>
 
-                <h4 className="font-jakarta font-bold text-xs uppercase tracking-wide text-black">
-                  {still.title}
-                </h4>
+                  <h4 className="font-jakarta font-bold text-xs uppercase tracking-wide text-black">
+                    {still.title}
+                  </h4>
+                </div>
               </div>
             ))}
           </div>

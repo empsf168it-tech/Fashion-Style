@@ -1,5 +1,5 @@
 import React from 'react';
-import { ArrowUpRight } from 'lucide-react';
+import { ArrowUpRight, ArrowDown } from 'lucide-react';
 import {
   CornerTL,
   CornerTR,
@@ -114,6 +114,22 @@ export const Hero: React.FC<HeroProps> = ({ setActiveDrawer }) => {
           </div>
         </div>
       </div>
+
+      {/* Top to Bottom Section Scroll Indicator Icon */}
+      <button
+        onClick={() => {
+          window.scrollBy({ top: window.innerHeight * 0.85, behavior: 'smooth' });
+        }}
+        className="absolute bottom-4 left-1/2 -translate-x-1/2 hidden md:flex flex-col items-center gap-1.5 text-black hover:opacity-60 transition-all cursor-pointer group select-none z-20"
+        aria-label="Scroll to Next Section"
+      >
+        <span className="font-jakarta text-[9px] uppercase tracking-[0.25em] font-semibold text-gray-400 group-hover:text-black">
+          SCROLL
+        </span>
+        <div className="w-7 h-7 rounded-full border border-gray-300 group-hover:border-black flex items-center justify-center transition-colors">
+          <ArrowDown className="w-3.5 h-3.5 group-hover:translate-y-0.5 transition-transform" />
+        </div>
+      </button>
     </main>
   );
 };

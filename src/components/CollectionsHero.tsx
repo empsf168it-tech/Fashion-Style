@@ -1,5 +1,6 @@
 import React from 'react';
 import { CornerTL, CornerTR, CornerBL, CornerBR, CheckerboardGrid, WireframeGlobe } from './SVGs';
+import { ArrowDown } from 'lucide-react';
 
 export const CollectionsHero: React.FC = () => {
   return (
@@ -66,6 +67,22 @@ export const CollectionsHero: React.FC = () => {
           </div>
         </div>
       </div>
+
+      {/* Top to Bottom Section Scroll Indicator Icon */}
+      <button
+        onClick={() => {
+          window.scrollBy({ top: window.innerHeight * 0.75, behavior: 'smooth' });
+        }}
+        className="relative z-10 mt-6 flex flex-col items-center gap-1.5 text-white hover:opacity-75 transition-all cursor-pointer group select-none"
+        aria-label="Scroll Down"
+      >
+        <span className="font-jakarta text-[9px] uppercase tracking-[0.25em] font-semibold text-gray-300 group-hover:text-white">
+          SCROLL DOWN
+        </span>
+        <div className="w-7 h-7 rounded-full border border-white/40 group-hover:border-white flex items-center justify-center transition-colors">
+          <ArrowDown className="w-3.5 h-3.5 group-hover:translate-y-0.5 transition-transform" />
+        </div>
+      </button>
     </div>
   );
 };

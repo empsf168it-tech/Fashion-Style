@@ -34,52 +34,54 @@ export const Header: React.FC<HeaderProps> = ({
 
   return (
     <header
-      className="relative z-30 bg-white/95 backdrop-blur-md border-b border-gray-200 sticky top-0 transition-all duration-300"
+      className="sticky top-0 z-40 bg-white/95 backdrop-blur-md border-b border-gray-200 transition-all duration-300 shadow-xs"
       style={{
         paddingInline: 'var(--pad-x)',
         paddingTop: 'var(--header-pt)',
         paddingBottom: 'clamp(0.75rem, 1.5vh, 1.25rem)',
       }}
     >
-      <div className="flex items-center justify-between w-full">
+      <div className="grid grid-cols-2 xl:grid-cols-3 items-center w-full">
         {/* Logo (left) */}
-        <button
-          onClick={() => handleNavClick('HOME')}
-          className="font-orbitron font-black text-black tracking-[0.18em] flex items-center gap-2.5 transition-opacity hover:opacity-80 cursor-pointer"
-          style={{ fontSize: 'var(--logo)' }}
-          aria-label="VÉLORA Home"
+        <div className="flex items-center justify-start">
+          <button
+            onClick={() => handleNavClick('HOME')}
+            className="font-orbitron font-black text-black tracking-[0.18em] flex items-center gap-2.5 transition-opacity hover:opacity-80 cursor-pointer"
+            style={{ fontSize: 'var(--logo)' }}
+            aria-label="VÉLORA Home"
+          >
+            <div className="w-5 h-5 border-2 border-black flex items-center justify-center rotate-45 shrink-0">
+              <div className="w-2 h-2 bg-black" />
+            </div>
+            <span>VÉLORA</span>
+          </button>
+        </div>
+
+        {/* Desktop Nav Links (centered in web view, hidden on 1024px tablet) */}
+        <nav
+          className="hidden xl:flex font-jakarta font-medium uppercase tracking-[0.2em] items-center justify-center"
+          style={{
+            fontSize: 'var(--nav)',
+            gap: 'var(--gap-nav)',
+          }}
         >
-          <div className="w-5 h-5 border-2 border-black flex items-center justify-center rotate-45 shrink-0">
-            <div className="w-2 h-2 bg-black" />
-          </div>
-          <span>VÉLORA</span>
-        </button>
+          {navItems.map((item) => (
+            <button
+              key={item.page}
+              onClick={() => handleNavClick(item.page)}
+              className={`transition-all cursor-pointer relative py-1 ${
+                currentPage === item.page
+                  ? 'text-black font-bold border-b-2 border-black'
+                  : 'text-gray-500 hover:text-black'
+              }`}
+            >
+              {item.label}
+            </button>
+          ))}
+        </nav>
 
         {/* Right side container */}
-        <div className="flex items-center gap-4">
-          {/* Desktop Nav Links (hidden on mobile and tablet) */}
-          <nav
-            className="hidden lg:flex font-jakarta font-medium uppercase tracking-[0.2em] items-center"
-            style={{
-              fontSize: 'var(--nav)',
-              gap: 'var(--gap-nav)',
-            }}
-          >
-            {navItems.map((item) => (
-              <button
-                key={item.page}
-                onClick={() => handleNavClick(item.page)}
-                className={`transition-all cursor-pointer relative py-1 ${
-                  currentPage === item.page
-                    ? 'text-black font-bold border-b-2 border-black'
-                    : 'text-gray-500 hover:text-black'
-                }`}
-              >
-                {item.label}
-              </button>
-            ))}
-          </nav>
-
+        <div className="flex items-center justify-end gap-4">
           {/* Cart Icon (Always visible) */}
           <button
             onClick={onOpenCart}
@@ -97,10 +99,10 @@ export const Header: React.FC<HeaderProps> = ({
             )}
           </button>
 
-          {/* Hamburger Menu Toggle Button (Visible on Tablet & Mobile: lg:hidden) */}
+          {/* Hamburger Menu Toggle Button (Visible on 1024px Tablet & Mobile: xl:hidden) */}
           <button
             onClick={() => setMobileMenuOpen(!mobileMenuOpen)}
-            className="lg:hidden p-2 text-black border border-gray-300 hover:border-black hover:bg-black hover:text-white transition-all cursor-pointer rounded-md flex items-center justify-center"
+            className="xl:hidden p-2 text-black border border-gray-300 hover:border-black hover:bg-black hover:text-white transition-all cursor-pointer rounded-md flex items-center justify-center"
             aria-label="Toggle Navigation Menu"
           >
             {mobileMenuOpen ? (
@@ -112,9 +114,9 @@ export const Header: React.FC<HeaderProps> = ({
         </div>
       </div>
 
-      {/* Mobile & Tablet Full Screen Overlay Navigation */}
+      {/* Mobile & Tablet Dropdown Navigation (Active on 1024px Tablet & Mobile) */}
       {mobileMenuOpen && (
-        <div className="lg:hidden fixed inset-x-0 top-full bg-white border-b border-gray-300 shadow-2xl z-40 transition-all duration-300 animate-in slide-in-from-top-2">
+        <div className="xl:hidden absolute inset-x-0 top-full bg-white border-b border-gray-300 shadow-2xl z-40 transition-all duration-300 animate-in slide-in-from-top-2 max-h-[calc(100vh-80px)] overflow-y-auto">
           <div className="relative p-6 bg-white space-y-6">
             <CornerTL className="absolute top-2 left-2 text-gray-300" style={{ width: '12px', height: '12px' }} />
             <CornerTR className="absolute top-2 right-2 text-gray-300" style={{ width: '12px', height: '12px' }} />

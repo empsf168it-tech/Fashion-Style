@@ -9,6 +9,7 @@ import { ContactPage } from './pages/ContactPage';
 import { Footer } from './components/Footer';
 import { Drawer } from './components/Drawer';
 import { Toast } from './components/Toast';
+import { ScrollToBottomTop } from './components/ScrollToBottomTop';
 import { PageType, DrawerType, CartItem, ToastMessage } from './types';
 
 export default function App() {
@@ -72,7 +73,7 @@ export default function App() {
   const cartCount = cart.reduce((acc, item) => acc + item.quantity, 0);
 
   return (
-    <div className="min-h-screen bg-white text-black font-jakarta flex flex-col justify-between relative overflow-x-hidden">
+    <div className="min-h-screen bg-white text-black font-jakarta flex flex-col justify-between relative overflow-x-clip">
       {/* Interactive Desktop Dual-Image Spotlight Background on Home Page */}
       {currentPage === 'HOME' && <ImageRevealBackground />}
 
@@ -108,6 +109,9 @@ export default function App() {
 
       {/* Toast Notifications */}
       <Toast toasts={toasts} />
+
+      {/* Global Top-to-Bottom / Bottom-to-Top Scroll Navigation */}
+      <ScrollToBottomTop />
     </div>
   );
 }

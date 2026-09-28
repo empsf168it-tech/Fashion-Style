@@ -9,7 +9,7 @@ export interface CartItem {
 
 export type PageType = 'HOME' | 'SHOP' | 'COLLECTIONS' | 'JOURNAL' | 'CONTACT';
 
-export type DrawerType = 'CART' | null;
+export type DrawerType = 'CART' | 'SHOP' | 'COLLECTIONS' | 'JOURNAL' | null;
 
 export interface ToastMessage {
   id: string;

@@ -109,14 +109,14 @@ export const ImageRevealBackground: React.FC = () => {
     <div className="fixed inset-0 pointer-events-none z-0 overflow-hidden">
       {/* 1. Base Layer: BG_IMAGE_1 */}
       <div
-        className="absolute inset-0 bg-cover bg-center lg:bg-[70%_center] bg-no-repeat opacity-95"
+        className="absolute inset-0 bg-cover bg-center xl:bg-[70%_center] bg-no-repeat opacity-95"
         style={{ backgroundImage: `url("${BG_IMAGE_1}")` }}
       />
 
       {/* 2. Reveal Layer: BG_IMAGE_2 clipped by canvas mask */}
       <div
         ref={revealRef}
-        className="absolute inset-0 bg-cover bg-center lg:bg-[70%_center] bg-no-repeat opacity-95"
+        className="absolute inset-0 bg-cover bg-center xl:bg-[70%_center] bg-no-repeat opacity-95"
         style={{ backgroundImage: `url("${BG_IMAGE_2}")` }}
       />
 

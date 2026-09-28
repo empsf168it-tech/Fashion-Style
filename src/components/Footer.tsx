@@ -1,5 +1,5 @@
 import React, { useState } from 'react';
-import { CornerTL, CornerTR, CornerBL, CornerBR, CheckerboardGrid } from './SVGs';
+import { CornerTL, CornerTR, CornerBL, CornerBR } from './SVGs';
 import { PageType } from '../types';
 import { ArrowUpRight, Check, Send, Instagram, Twitter, Youtube, Linkedin, MessageSquare } from 'lucide-react';
 
@@ -188,9 +188,10 @@ export const Footer: React.FC<FooterProps> = ({ setCurrentPage }) => {
                     setCurrentPage('COLLECTIONS');
                     window.scrollTo({ top: 0, behavior: 'smooth' });
                   }}
-                  className="hover:text-white transition-colors cursor-pointer"
+                  className="hover:text-white transition-colors cursor-pointer flex items-center gap-1 group text-left"
                 >
-                  SERIES 01 — HORIZONS
+                  <span>SERIES 01 — HORIZONS</span>
+                  <ArrowUpRight className="w-3 h-3 opacity-0 group-hover:opacity-100 transition-opacity" />
                 </button>
               </li>
               <li>
@@ -199,9 +200,10 @@ export const Footer: React.FC<FooterProps> = ({ setCurrentPage }) => {
                     setCurrentPage('COLLECTIONS');
                     window.scrollTo({ top: 0, behavior: 'smooth' });
                   }}
-                  className="hover:text-white transition-colors cursor-pointer"
+                  className="hover:text-white transition-colors cursor-pointer flex items-center gap-1 group text-left"
                 >
-                  SERIES 02 — KINETIC
+                  <span>SERIES 02 — KINETIC</span>
+                  <ArrowUpRight className="w-3 h-3 opacity-0 group-hover:opacity-100 transition-opacity" />
                 </button>
               </li>
               <li>
@@ -210,9 +212,10 @@ export const Footer: React.FC<FooterProps> = ({ setCurrentPage }) => {
                     setCurrentPage('COLLECTIONS');
                     window.scrollTo({ top: 0, behavior: 'smooth' });
                   }}
-                  className="hover:text-white transition-colors cursor-pointer"
+                  className="hover:text-white transition-colors cursor-pointer flex items-center gap-1 group text-left"
                 >
-                  SERIES 03 — ZERO
+                  <span>SERIES 03 — ZERO</span>
+                  <ArrowUpRight className="w-3 h-3 opacity-0 group-hover:opacity-100 transition-opacity" />
                 </button>
               </li>
             </ul>

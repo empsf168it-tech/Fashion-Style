@@ -43,7 +43,9 @@
   font-family: 'Chakra Petch', sans-serif;
 }
 
+html,
 body {
+  overflow-x: clip;
   font-family: 'Plus Jakarta Sans', sans-serif;
   background-color: #ffffff;
   color: #000000;

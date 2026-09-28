@@ -13,7 +13,7 @@ const PRODUCTS = [
     price: 850,
     tag: 'LIMITED EDITION',
     desc: 'High-density weatherproof membrane with structured shoulder architecture.',
-    img: 'https://images.unsplash.com/photo-1539571696357-5a69c17a67c6?auto=format&fit=crop&w=800&q=80',
+    img: 'https://images.unsplash.com/photo-1515886657613-9f3515b0c78f?auto=format&fit=crop&w=800&q=80',
   },
   {
     id: '2',
@@ -67,7 +67,7 @@ export const ShopSection: React.FC<ShopSectionProps> = ({ onAddToCart }) => {
       </div>
 
       {/* Product Grid */}
-      <div className="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-4 gap-6">
+      <div className="grid grid-cols-1 md:grid-cols-2 xl:grid-cols-4 gap-6">
         {PRODUCTS.map((prod) => (
           <div
             key={prod.id}
@@ -113,13 +113,13 @@ export const ShopSection: React.FC<ShopSectionProps> = ({ onAddToCart }) => {
               </p>
             </div>
 
-            <div className="pt-3 border-t border-gray-100 flex items-center justify-between mt-4">
-              <span className="font-jakarta font-extrabold text-base text-black">
+            <div className="pt-3 border-t border-gray-100 flex items-center justify-between gap-2 mt-4">
+              <span className="font-jakarta font-extrabold text-base text-black shrink-0">
                 ${prod.price}
               </span>
               <button
                 onClick={() => onAddToCart(prod)}
-                className="group/btn border border-black bg-black text-white hover:bg-white hover:text-black transition-colors px-3 py-1.5 font-jakarta font-semibold text-xs uppercase tracking-widest flex items-center gap-1.5 cursor-pointer"
+                className="group/btn border border-black bg-black text-white hover:bg-white hover:text-black transition-colors px-3 py-1.5 font-jakarta font-semibold text-xs uppercase tracking-widest flex items-center gap-1.5 cursor-pointer shrink-0"
               >
                 <span>ADD TO BAG</span>
                 <Plus className="w-3.5 h-3.5 group-hover/btn:rotate-90 transition-transform duration-300" />
